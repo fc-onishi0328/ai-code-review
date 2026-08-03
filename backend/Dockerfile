@@ -15,5 +15,5 @@ COPY . .
 EXPOSE 8000
 
 # --reload でコード変更時に自動リロード（開発用オプション。本番では外す）
-# main.py がbackend直下にある現状の構成に合わせて "main:app" を指定
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# main.py を app/ 配下に移動したため "app.main:app" を指定
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
