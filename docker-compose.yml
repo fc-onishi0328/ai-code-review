@@ -1,0 +1,23 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # ソースコードをコンテナにマウントし、ローカルで編集したらすぐ反映されるようにする
+      - ./backend:/app
+    env_file:
+      # Gemini APIキーなどをここから読み込む（backend/.env は各自で用意する）
+      - ./backend/.env
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      # node_modulesはコンテナ内でインストールしたものを使う
+      # （ホスト側のマウントで上書きされないようにする定番の書き方）
+      - /app/node_modules
+    depends_on:
+      - backend

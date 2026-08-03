@@ -1,0 +1,7 @@
+# ローカルのnode_modulesはイメージに含めない（イメージ内でnpm installし直すため）
+node_modules/
+dist/
+
+# Git関連
+.git/
+.gitignore

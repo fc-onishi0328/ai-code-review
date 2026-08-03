@@ -1,0 +1,14 @@
+# Backend (Python)
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+.env
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+
+# OS / エディタ
+.DS_Store
+.vscode/

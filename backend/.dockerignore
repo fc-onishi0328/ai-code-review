@@ -1,0 +1,11 @@
+# ローカルのvenvはイメージに含めない（イメージ内でpip installし直すため）
+venv/
+__pycache__/
+*.pyc
+
+# 環境変数ファイルはイメージに焼き込まない（docker-composeのenv_fileで渡す）
+.env
+
+# Git関連
+.git/
+.gitignore
