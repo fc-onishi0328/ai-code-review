@@ -1,18 +1,26 @@
-from fastapi import APIRouter
+import json
+import logging
+
+from fastapi import APIRouter, HTTPException
 
 from app.schemas.review import ReviewRequest, ReviewResponse
+from app.services.gemini_service import generate_review
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
 
 @router.post("/api/review", response_model=ReviewResponse)
 def review_code(request: ReviewRequest):
-    # TODO: 次のステップでここをGemini API呼び出しに差し替える
-    # 現時点ではAPIの疎通・スキーマ確認のため固定値を返す
-    return ReviewResponse(
-        overall_evaluation=f"{request.language}のコードを受け取りました（ダミー応答）",
-        issues=["これはダミーの問題点です"],
-        improvements=["これはダミーの改善ポイントです"],
-        suggested_fixes="ここに修正案が入ります（ダミー）",
-        learning_points=["これはダミーの学習ポイントです"],
-    )
+    try:
+        result = generate_review(request)
+    except json.JSONDecodeError:
+        # Geminiの応答が期待したJSON形式でなかった場合
+        raise HTTPException(status_code=502, detail="AIの応答を解析できませんでした")
+    except Exception:
+        # APIキー未設定・ネットワークエラーなど、Gemini呼び出し自体に失敗した場合
+        logger.exception("Gemini API呼び出しに失敗しました")
+        raise HTTPException(status_code=502, detail="AIサービスへの接続に失敗しました")
+
+    return ReviewResponse(**result)
