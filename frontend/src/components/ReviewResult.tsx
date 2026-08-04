@@ -1,4 +1,5 @@
 import type { ReviewResponse } from "../types/review";
+import { Box } from "@mui/material";
 
 
 function ReviewResult({ result }: { result: ReviewResponse | null }) {
@@ -22,7 +23,17 @@ function ReviewResult({ result }: { result: ReviewResponse | null }) {
                 ))}
             </ul>
             <h3>提案される修正</h3>
-            <pre>{result.suggested_fixes}</pre>
+            <Box
+                component="pre"
+                sx={{
+                    fontFamily: "monospace",
+                    padding: 2,
+                    borderRadius: 1,
+                    overflowX: "auto",
+                }}
+            >
+                {result.suggested_fixes}
+            </Box>
             <h3>学習ポイント</h3>
             <ul>
                 {result.learning_points.map((point, index) => (
