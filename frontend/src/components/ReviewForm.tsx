@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { ReviewFormProps } from "../types/review";
-import { Select, MenuItem,FormControl, InputLabel, TextField, Button } from "@mui/material";
-import Stack from "@mui/material/Stack";
+import { Select, MenuItem,FormControl, InputLabel, TextField, Button, CircularProgress, Stack } from "@mui/material";
 
 
 function ReviewForm({ onSubmit, loading }: ReviewFormProps) {
@@ -34,7 +33,7 @@ function ReviewForm({ onSubmit, loading }: ReviewFormProps) {
                     label="コード"
                     multiline
                     rows={4}
-                    defaultValue={code}
+                    value={code}
                     onChange={(e) => setCode(e.target.value)}
                 />
                 <FormControl fullWidth>
@@ -56,8 +55,9 @@ function ReviewForm({ onSubmit, loading }: ReviewFormProps) {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => onSubmit({ language, code, reviewPoints })}
+                    onClick={() => onSubmit({ language, code, review_points: reviewPoints })}
                     disabled={loading}
+                    startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
                 >
                     {loading ? "送信中..." : "レビューを送信"}
                 </Button>

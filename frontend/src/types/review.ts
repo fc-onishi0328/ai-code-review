@@ -1,7 +1,7 @@
 export type ReviewRequest = {
     language: string;
     code: string;
-    reviewPoints: string[];
+    review_points: string[];
 }
 
 export type ReviewResponse = {

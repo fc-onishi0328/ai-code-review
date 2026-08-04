@@ -1,4 +1,5 @@
 import ReviewForm from "./components/ReviewForm";
+import ReviewResult from "./components/ReviewResult";
 import { useState } from "react";
 import type { ReviewRequest, ReviewResponse } from "./types/review";
 import { reviewCode } from "./api/review";
@@ -13,10 +14,15 @@ function App() {
     setError(null);
     try {
       const response = await reviewCode(reviewRequest);
+      // throw new Error("test");
       setResult(response);
     }
     catch (error) {
-      setError("An error occurred while reviewing the code.");
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unknown error occurred");
+      }
     }
     finally {
       setLoading(false);
@@ -25,6 +31,8 @@ function App() {
   return (
     <div>
       <ReviewForm onSubmit={handleSubmit} loading={loading} />
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <ReviewResult result={result} />
     </div>
   );
 }
