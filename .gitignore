@@ -8,6 +8,7 @@ backend/**/__pycache__/
 # Frontend (Node)
 frontend/node_modules/
 frontend/dist/
+frontend/.env
 
 # OS / エディタ
 .DS_Store

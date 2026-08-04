@@ -1,26 +1,31 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import ReviewForm from "./components/ReviewForm";
+import { useState } from "react";
+import type { ReviewRequest, ReviewResponse } from "./types/review";
+import { reviewCode } from "./api/review";
 
 function App() {
-  const [status, setStatus] = useState("");
+  const [result, setResult] = useState<ReviewResponse | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/health")
-      .then((response) => {
-        setStatus(response.data.status);
-      })
-      .catch((error) => {
-        console.error(error);
-        setStatus("error");
-      });
-  }, []);
-
+  const handleSubmit = async (reviewRequest: ReviewRequest) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await reviewCode(reviewRequest);
+      setResult(response);
+    }
+    catch (error) {
+      setError("An error occurred while reviewing the code.");
+    }
+    finally {
+      setLoading(false);
+    }
+  };
   return (
-    <>
-      <h1>AI Code Review</h1>
-      <p>API Status: {status}</p>
-    </>
+    <div>
+      <ReviewForm onSubmit={handleSubmit} loading={loading} />
+    </div>
   );
 }
 
