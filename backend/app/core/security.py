@@ -26,7 +26,7 @@ def hash_password(plain_password: str) -> str:
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """入力されたパスワードが保存されているハッシュと一致するか確認する"""
-    return bcrypt.checkpw(plain_password.encode("utf-8"), hash_password.encode("utf-8"))
+    return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
 
 def create_access_token(user_id: int) -> str:
     """指定したユーザーIDを含むJWTを発行する"""
