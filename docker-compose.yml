@@ -1,4 +1,15 @@
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ai_code_review
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
   backend:
     build: ./backend
     ports:
@@ -9,6 +20,8 @@ services:
     env_file:
       # Gemini APIキーなどをここから読み込む（backend/.env は各自で用意する）
       - ./backend/.env
+    depends_on:
+      - db
 
   frontend:
     build: ./frontend
@@ -21,3 +34,6 @@ services:
       - /app/node_modules
     depends_on:
       - backend
+
+volumes:
+  db_data:
