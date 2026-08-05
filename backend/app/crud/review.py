@@ -24,4 +24,4 @@ def create_review(db: Session, request: ReviewRequest, result: dict) -> Review:
 
 
 def get_all_histories(db: Session) -> list[Review]:
-    return db.query(Review).order_by(Review.created_at.desc()).select(Review.id,).all()
+    return db.query(Review).order_by(Review.created_at.desc()).all()
