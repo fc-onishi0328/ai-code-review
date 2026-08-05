@@ -20,8 +20,8 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/login")
 oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="/api/auth/login", auto_error=False)
 
 def hash_password(plain_password: str) -> str:
-    """パスワードをbcrypyでハッシュ化する"""
-    hashed = bcrypy.hashpw(plain_password.encode("UTF-8"), bcrypt.gensalt())
+    """パスワードをbcryptでハッシュ化する"""
+    hashed = bcrypt.hashpw(plain_password.encode("UTF-8"), bcrypt.gensalt())
     return hashed.decode("utf-8")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
