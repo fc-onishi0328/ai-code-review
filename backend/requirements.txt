@@ -8,3 +8,5 @@ psycopg2-binary
 bcrypt
 pyjwt
 email-validator
+pytest
+httpx

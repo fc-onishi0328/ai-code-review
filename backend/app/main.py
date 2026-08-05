@@ -5,6 +5,7 @@ from app.core.config import ALLOWED_ORIGINS
 from app.core.database import engine, Base
 from app.api.routes import health, review, history, auth
 from app.models import review as review_model  # noqa: F401
+from app.models import user as user_model  # noqa: F401
 
 Base.metadata.create_all(bind=engine)
 
