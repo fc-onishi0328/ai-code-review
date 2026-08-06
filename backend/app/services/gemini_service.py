@@ -8,7 +8,7 @@ from app.schemas.review import ReviewRequest
 logger = logging.getLogger(__name__)
 
 # 使用するGeminiモデル
-MODEL_NAME = "gemini-3.5-flash"
+MODEL_NAME = "gemini-3.5-flash-lite"
 
 
 def _build_prompt(request: ReviewRequest) -> str:
