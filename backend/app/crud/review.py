@@ -4,8 +4,9 @@ from app.models.review import Review
 from app.schemas.review import ReviewRequest
 
 
-def create_review(db: Session, request: ReviewRequest, result: dict) -> Review:
+def create_review(db: Session, request: ReviewRequest, result: dict, user_id: int) -> Review:
     new_review = Review(
+        user_id=user_id,
         language=request.language,
         code=request.code,
         review_points=request.review_points,
@@ -14,7 +15,6 @@ def create_review(db: Session, request: ReviewRequest, result: dict) -> Review:
         improvements=result["improvements"],
         suggested_fixes=result["suggested_fixes"],
         learning_points=result["learning_points"]
-        
     )
     db.add(new_review)
     db.commit()
@@ -23,5 +23,5 @@ def create_review(db: Session, request: ReviewRequest, result: dict) -> Review:
 
 
 
-def get_all_histories(db: Session) -> list[Review]:
-    return db.query(Review).order_by(Review.created_at.desc()).all()
+def get_all_histories(db: Session, user_id: int) -> list[Review]:
+    return db.query(Review).filter(Review.user_id == user_id).order_by(Review.created_at.desc()).all()
