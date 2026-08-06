@@ -19,4 +19,4 @@ router = APIRouter()
 
 @router.get("/api/history", response_model=list[ReviewHistoryItem])
 def get_history(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    return get_all_histories(db, user_id=current_user)
+    return get_all_histories(db, user_id=current_user.id)
