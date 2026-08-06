@@ -3,13 +3,15 @@ import { useState, useEffect } from "react";
 import type { ReviewHistoryItem } from "../types/history";
 import { Typography, Container, Box, Button } from "@mui/material";
 import { getHistories } from "../api/history";
+import { useAuth } from "../contexts/AuthContext";
 
 
 function HistoryPage () {
+  const { token } = useAuth()
   const [histories, setHistories] = useState<ReviewHistoryItem[]>([]);
   useEffect(() => {
     const fetchHistories = async () => {
-      const data = await getHistories();
+      const data = await getHistories(token!);
       setHistories(data);
     };
     fetchHistories();

@@ -1,12 +1,13 @@
 import ReviewForm from "../components/ReviewForm";
 import ReviewResult from "../components/ReviewResult";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import type { ReviewRequest, ReviewResponse } from "../types/review";
 import { reviewCode } from "../api/review";
-import { Typography, Container, Box, Button } from "@mui/material";
+import { Container } from "@mui/material";
+import { useAuth } from "../contexts/AuthContext";
 
 function ReviewPage() {
+  const { token } = useAuth()
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,7 @@ function ReviewPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await reviewCode(reviewRequest);
+      const response = await reviewCode(reviewRequest, token);
       // throw new Error("test");
       setResult(response);
     }
@@ -33,17 +34,6 @@ function ReviewPage() {
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 4 }}>
       <div>
-        {/* <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 1 }}>
-            <Typography variant="h4" component="h1" sx={{ fontWeight: 500 }}>
-                AI Code Review Assistant
-            </Typography>
-            <Button component={Link} to="/history" variant="outlined">
-                履歴を見る
-            </Button>
-        </Box>
-        <Typography variant="body2" sx={{ color: "text.secondary", mb: 3 }}>
-            コードを入力すると、AIが可読性・保守性・セキュリティ・パフォーマンスの観点でレビューします
-        </Typography> */}
         <ReviewForm onSubmit={handleSubmit} loading={loading} />
         {error && <p style={{ color: "red" }}>{error}</p>}
         <ReviewResult result={result} />

@@ -3,10 +3,13 @@ import axios from 'axios';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
-export async function reviewCode(request: ReviewRequest): Promise<ReviewResponse> {
-    const headers = {
+export async function reviewCode(request: ReviewRequest, token: string | null): Promise<ReviewResponse> {
+    const headers: Record<string, string> = {
         'Content-Type': 'application/json',
     };
+    if (token) {
+        headers['Authorization'] = `Bearer ${token}`
+    }
     const response = await axios.post<ReviewResponse>(`${API_BASE_URL}/api/review`, request, { headers });
     // レスポンス例
     // const response = {

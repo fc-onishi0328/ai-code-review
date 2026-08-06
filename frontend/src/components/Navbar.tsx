@@ -1,7 +1,14 @@
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
+    const { token, logout } = useAuth();
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        logout()
+        navigate("/login")
+    }
     return (
         <AppBar position="static" color="transparent" elevation={0}>
             <Toolbar>
@@ -12,7 +19,11 @@ function Navbar() {
                 <Box sx={{ display: "flex", gap: 1 }}>
                     <Button component={Link} to="/">レビュー</Button>
                     <Button component={Link} to="/history">履歴</Button>
-                    <Button variant="outlined">ログイン</Button>
+                    {token ? (
+                        <Button variant="outlined" onClick={handleLogout}>ログアウト</Button>
+                    ) : (
+                        <Button component={Link} to="/login" variant="outlined">ログイン</Button>
+                    )}
                 </Box>
             </Toolbar>
         </AppBar>
