@@ -25,3 +25,6 @@ def create_review(db: Session, request: ReviewRequest, result: dict, user_id: in
 
 def get_all_histories(db: Session, user_id: int) -> list[Review]:
     return db.query(Review).filter(Review.user_id == user_id).order_by(Review.created_at.desc()).all()
+
+def get_review_by_id(db: Session, review_id: int, user_id: int) -> Review | None:
+    return db.query(Review).filter(Review.id == review_id).filter(Review.user_id == user_id).first()

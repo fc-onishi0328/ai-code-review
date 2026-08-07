@@ -23,3 +23,10 @@ class ReviewHistoryItem(ReviewResponse):
     code: str
     review_points: list[str]
     created_at: datetime
+
+class ReviewHistoryDetail(ReviewResponse):
+    id: int
+    language: str
+    code: str
+    review_points: list[str]
+    created_at: datetime
