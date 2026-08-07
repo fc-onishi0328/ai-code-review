@@ -119,7 +119,6 @@ docker compose exec backend python -m pytest -v
 
 - **`docker-compose up`で `Cannot connect to the Docker daemon`**：Docker Desktopが起動しているか確認してください
 - **frontendのビルドで `package.json` が見つからないエラー**：`docker-compose.yml`があるディレクトリを基準に、`frontend/`・`backend/`それぞれの中身が正しく配置されているか確認してください
-- **Google スプレッドシートなどで日付がずれる**：タイムゾーン設定を確認してください（本アプリのAPI・DBはUTC基準で保存しています）
 
 ## 今後の拡張候補
 
