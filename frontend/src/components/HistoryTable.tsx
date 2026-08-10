@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { ReviewHistoryItem } from "../types/history";
+import type { ReviewHistoryItem } from "@/types/history";
 import { Container, Chip, Stack } from "@mui/material";
-import { reviewPointColors } from "../theme";
+import { reviewPointColors } from "@/theme";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';

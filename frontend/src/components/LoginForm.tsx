@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { LoginFormProps } from "../types/auth";
+import type { LoginFormProps } from "@/types/auth";
 import { TextField, Button, CircularProgress, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 

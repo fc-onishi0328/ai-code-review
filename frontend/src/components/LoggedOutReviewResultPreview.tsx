@@ -1,4 +1,4 @@
-import type { ReviewHistoryItem } from "../types/history";
+import type { ReviewHistoryItem } from "@/types/history";
 import { Box, Paper, Typography, Button } from "@mui/material";
 import HistoryTable from "./HistoryTable"
 import { useNavigate } from "react-router-dom";

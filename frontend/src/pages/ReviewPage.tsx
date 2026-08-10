@@ -1,10 +1,10 @@
-import ReviewForm from "../components/ReviewForm";
-import ReviewResult from "../components/ReviewResult";
+import ReviewForm from "@/components/ReviewForm";
+import ReviewResult from "@/components/ReviewResult";
 import { useState } from "react";
-import type { ReviewRequest, ReviewResponse } from "../types/review";
-import { reviewCode } from "../api/review";
+import type { ReviewRequest, ReviewResponse } from "@/types/review";
+import { reviewCode } from "@/api/review";
 import { Container } from "@mui/material";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 function ReviewPage() {
   const { token } = useAuth()

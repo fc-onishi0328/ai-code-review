@@ -1,10 +1,10 @@
-import HistoryTable from "../components/HistoryTable"
+import HistoryTable from "@/components/HistoryTable"
 import { useState, useEffect } from "react";
-import type { ReviewHistoryItem } from "../types/history";
+import type { ReviewHistoryItem } from "@/types/history";
 import { Container } from "@mui/material";
-import { getHistories } from "../api/history";
-import { useAuth } from "../contexts/AuthContext";
-import LoggedOutReviewResultPreview from "../components/LoggedOutReviewResultPreview";
+import { getHistories } from "@/api/history";
+import { useAuth } from "@/contexts/AuthContext";
+import LoggedOutReviewResultPreview from "@/components/LoggedOutReviewResultPreview";
 
 
 function HistoryPage () {

@@ -1,9 +1,9 @@
-import LoginForm from "../components/LoginForm";
+import LoginForm from "@/components/LoginForm";
 import { useState } from "react";
 import { Typography, Paper, Box, Alert } from "@mui/material";
-import { useAuth } from "../contexts/AuthContext";
-import type { LoginRequest, LoginResponse } from "../types/auth";
-import { login as loginApi } from "../api/auth";
+import { useAuth } from "@/contexts/AuthContext";
+import type { LoginRequest, LoginResponse } from "@/types/auth";
+import { login as loginApi } from "@/api/auth";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {

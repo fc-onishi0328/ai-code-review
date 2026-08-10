@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Typography, Paper, Box, Alert } from "@mui/material";
-import type { RegisterRequest } from "../types/auth";
-import { register as registerApi } from "../api/auth";
+import type { RegisterRequest } from "@/types/auth";
+import { register as registerApi } from "@/api/auth";
 import { useNavigate } from "react-router-dom";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "@/components/RegisterForm";
 
 function RegisterPage() {
     const navigate = useNavigate();

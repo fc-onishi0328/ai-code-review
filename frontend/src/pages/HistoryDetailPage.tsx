@@ -1,11 +1,11 @@
 import { Typography, Container, Paper, Box, Stack, Chip } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import ReviewResult from "../components/ReviewResult";
+import ReviewResult from "@/components/ReviewResult";
 import { useAuth } from '../contexts/AuthContext';
-import { getHistoryDetail } from "../api/history";
+import { getHistoryDetail } from "@/api/history";
 import { useEffect, useState } from "react";
-import type { ReviewHistoryDetail } from "../types/history";
-import { reviewPointColors } from "../theme";
+import type { ReviewHistoryDetail } from "@/types/history";
+import { reviewPointColors } from "@/theme";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 

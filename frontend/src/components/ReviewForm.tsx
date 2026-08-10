@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { ReviewFormProps } from "../types/review";
+import type { ReviewFormProps } from "@/types/review";
 import { Select, MenuItem,FormControl, InputLabel, TextField, Button, CircularProgress,  Chip, Stack, Typography } from "@mui/material";
-import { reviewPointColors } from "../theme";
+import { reviewPointColors } from "@/theme";
 
 function ReviewForm({ onSubmit, loading }: ReviewFormProps) {
     const [language, setLanguage] = useState("");

@@ -1,4 +1,4 @@
-import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "../types/auth";
+import type { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse } from "@/types/auth";
 import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
