@@ -1,3 +1,4 @@
+import type { ReviewResponse } from "./review";
 export type ReviewHistoryItem = {
     id: number;
     language: string;
@@ -13,4 +14,12 @@ export type ReviewHistoryItem = {
 
 export type ReviewHistoriesResponse = {
     histories: ReviewHistoryItem[];
+}
+
+export type ReviewHistoryDetail = ReviewResponse & {
+    id: number;
+    language: string;
+    code: string;
+    review_points: string[];
+    created_at: string;
 }

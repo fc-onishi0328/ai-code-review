@@ -5,6 +5,7 @@ import HistoryPage from "./pages/HistoryPage";
 import GuestOnlyRoute from "./components/GuestOnlyRoute";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import HistoryDetailPage from "./pages/HistoryDetailPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/login" element={<GuestOnlyRoute><LoginPage /></GuestOnlyRoute>} />
           <Route path="/register" element={<GuestOnlyRoute><RegisterPage /></GuestOnlyRoute>} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/history/:id" element={<HistoryDetailPage />}></Route>
         </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,9 @@
 import type { ReviewResponse } from "../types/review";
-import { Box } from "@mui/material";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 
-function ReviewResult({ result }: { result: ReviewResponse | null }) {
+function ReviewResult({ result, language }: { result: ReviewResponse | null, language: string }) {
     if (!result) {
         return null;
     }
@@ -23,17 +24,13 @@ function ReviewResult({ result }: { result: ReviewResponse | null }) {
                 ))}
             </ul>
             <h3>提案される修正</h3>
-            <Box
-                component="pre"
-                sx={{
-                    fontFamily: "monospace",
-                    padding: 2,
-                    borderRadius: 1,
-                    overflowX: "auto",
-                }}
+            <SyntaxHighlighter
+                language={language}
+                style={oneDark}
+                customStyle={{ borderRadius: 8, margin: 0, fontSize: 13 }}
             >
                 {result.suggested_fixes}
-            </Box>
+            </SyntaxHighlighter>
             <h3>学習ポイント</h3>
             <ul>
                 {result.learning_points.map((point, index) => (

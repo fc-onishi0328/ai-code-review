@@ -8,6 +8,11 @@ import { useAuth } from "../contexts/AuthContext";
 
 function ReviewPage() {
   const { token } = useAuth()
+  const [request, setRequest] = useState<ReviewRequest>({
+    language: 'python',
+    code: '',
+    review_points: [],
+  });
   const [result, setResult] = useState<ReviewResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -16,6 +21,7 @@ function ReviewPage() {
     setLoading(true);
     setError(null);
     try {
+      setRequest(reviewRequest)
       const response = await reviewCode(reviewRequest, token);
       // throw new Error("test");
       setResult(response);
@@ -36,7 +42,7 @@ function ReviewPage() {
       <div>
         <ReviewForm onSubmit={handleSubmit} loading={loading} />
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <ReviewResult result={result} />
+        <ReviewResult result={result} language={request.language || 'python'} />
       </div>
     </Container>
   );
