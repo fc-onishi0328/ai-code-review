@@ -1,7 +1,7 @@
 import HistoryTable from "../components/HistoryTable"
 import { useState, useEffect } from "react";
 import type { ReviewHistoryItem } from "../types/history";
-import { Typography, Container, Box, Button } from "@mui/material";
+import { Container } from "@mui/material";
 import { getHistories } from "../api/history";
 import { useAuth } from "../contexts/AuthContext";
 import LoggedOutReviewResultPreview from "../components/LoggedOutReviewResultPreview";

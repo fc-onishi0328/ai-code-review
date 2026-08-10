@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Typography, Paper, Box, Alert   } from "@mui/material";
+import { Typography, Paper, Box, Alert } from "@mui/material";
 import type { RegisterRequest } from "../types/auth";
 import { register as registerApi } from "../api/auth";
 import { useNavigate } from "react-router-dom";
