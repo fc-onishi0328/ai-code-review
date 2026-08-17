@@ -1,12 +1,13 @@
 import { useState } from "react";
 import type { LoginFormProps } from "@/types/auth";
-import { TextField, Button, CircularProgress, Stack } from "@mui/material";
+import { TextField, Button, CircularProgress, Stack, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm({ onSubmit, loading }: LoginFormProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
+    const isDisabled = loading || !email || !password;
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSubmit({ email, password });
@@ -27,14 +28,20 @@ function LoginForm({ onSubmit, loading }: LoginFormProps) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
-                >
-                    {loading ? "ログイン中" : "ログイン"}
-                </Button>
+                <Tooltip title={isDisabled ? "メールアドレスとパスワードを入力してください" : ""}>
+                    <span style={{ width: "100%", display: "block" }}>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            startIcon={loading ? <CircularProgress size={16} color="inherit" /> : null}
+                            disabled={isDisabled}
+                        >
+                            {loading ? "ログイン中" : "ログイン"}
+                        </Button>
+                    </span>
+                </Tooltip>
                 <Button
                     variant="outlined"
                     color="primary"

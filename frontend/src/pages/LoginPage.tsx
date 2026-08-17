@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import type { LoginRequest, LoginResponse } from "@/types/auth";
 import { login as loginApi } from "@/api/auth";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function LoginPage() {
   const { login } = useAuth();
@@ -22,16 +23,13 @@ function LoginPage() {
       setResult(response);
       login(response.access_token)
       navigate("/")
-    }
-    catch (error) {
-      console.log(error)
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError("An unknown error occurred");
-      }
-    }
-    finally {
+    } catch (error) {
+        if (axios.isAxiosError(error) && error.response) {
+            setError(error.response.data.detail);
+        } else {
+            setError("ログインに失敗しました");
+        }
+    } finally {
       setLoading(false);
     }
   };
