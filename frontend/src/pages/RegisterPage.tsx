@@ -4,6 +4,7 @@ import type { RegisterRequest } from "@/types/auth";
 import { register as registerApi } from "@/api/auth";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "@/components/RegisterForm";
+import axios from "axios";
 
 function RegisterPage() {
     const navigate = useNavigate();
@@ -17,10 +18,10 @@ function RegisterPage() {
             await registerApi(registerRequest);
             navigate("/login");
         } catch (error) {
-            if (error instanceof Error) {
-                setError(error.message);
+            if (axios.isAxiosError(error) && error.response) {
+                setError(error.response.data.detail);
             } else {
-                setError("An unknown error occurred");
+                setError("登録に失敗しました");
             }
         } finally {
             setLoading(false);
