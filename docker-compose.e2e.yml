@@ -1,0 +1,8 @@
+services:
+  backend:
+    environment:
+      - MOCK_GEMINI=true
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/ai_code_review_e2e
+  frontend:
+    environment:
+      - VITE_API_BASE_URL=http://backend:8000

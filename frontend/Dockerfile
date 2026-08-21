@@ -6,6 +6,7 @@ WORKDIR /app
 # package.jsonだけ先にコピーしてインストール（ビルドキャッシュを効かせるため）
 COPY package*.json ./
 RUN npm install
+RUN npx playwright install --with-deps chromium
 
 # アプリケーションコードをコピー
 # ※ docker-compose.ymlでvolumeマウントする想定のため、開発中はここは主にビルド確認用

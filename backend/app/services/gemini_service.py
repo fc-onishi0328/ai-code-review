@@ -4,12 +4,13 @@ import logging
 from google import genai
 
 from app.schemas.review import ReviewRequest
+import os
 
 logger = logging.getLogger(__name__)
 
 # 使用するGeminiモデル
 MODEL_NAME = "gemini-3.5-flash-lite"
-
+MOCK_GEMINI = os.environ.get("MOCK_GEMINI", "false").lower() == "true"
 
 def _build_prompt(request: ReviewRequest) -> str:
     """Geminiに渡すプロンプトを組み立てる"""
@@ -45,6 +46,15 @@ def _extract_text(interaction) -> str:
 
 def generate_review(request: ReviewRequest) -> dict:
     """Gemini APIを呼び出し、レビュー結果をdictで返す"""
+    if MOCK_GEMINI:
+        return {
+            "overall_evaluation": "E2Eテスト用の固定評価です。",
+            "issues": ["E2Eテスト用の指摘事項です。"],
+            "improvements": ["E2Eテスト用の改善ポイントです。"],
+            "suggested_fixes": "E2Eテスト用の修正案です。",
+            "learning_points": ["E2Eテスト用の学習ポイントです。"],
+        }
+
     # genai.Client() は環境変数 GEMINI_API_KEY を自動で読み込む
     client = genai.Client()
 

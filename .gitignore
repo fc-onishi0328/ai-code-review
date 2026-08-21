@@ -9,6 +9,7 @@ backend/**/__pycache__/
 frontend/node_modules/
 frontend/dist/
 frontend/.env
+frontend/test-results/
 
 # OS / エディタ
 .DS_Store
