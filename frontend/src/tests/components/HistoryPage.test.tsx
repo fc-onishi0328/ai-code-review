@@ -15,6 +15,11 @@ const dummyHistories = Array.from({ length: 11 }, (_, i) => ({
     language: `lang-${i + 1}`,
     code: "print('hello')",
     review_points: [],
+    overall_evaluation: "良好",
+    issues: [],
+    improvements: [],
+    suggested_fixes: "",
+    learning_points: [],
     created_at: new Date().toISOString(),
 }));
 
